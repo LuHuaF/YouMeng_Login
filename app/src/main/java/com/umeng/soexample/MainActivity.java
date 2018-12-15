@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -18,7 +21,7 @@ import java.util.Map;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mDai, mNoDai;
-
+    private ImageView mImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initViews() {
+        mImage = findViewById(R.id.image);
         mDai = findViewById(R.id.Dai_MB_Btn);
         mDai.setOnClickListener(this);
         mNoDai = findViewById(R.id.No_Dai_MB_Btn);
@@ -117,8 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          */
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            Toast.makeText(MainActivity.this, "成功了", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(MainActivity.this, data+"", Toast.LENGTH_LONG).show();
+            String iconUrl = data.get("profile_image_url");
+            Glide.with(MainActivity.this).load(iconUrl).into(mImage);
         }
 
         /**
@@ -153,5 +158,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);*/
         Toast.makeText(MainActivity.this,"登录成功了啊啊啊啊啊啊啊",Toast.LENGTH_SHORT).show();
     }
-
 }

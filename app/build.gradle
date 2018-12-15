@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.umeng.sdk:common:latest.integration'
     implementation 'com.umeng.sdk:analytics:latest.integration'
     implementation files('libs/umeng-share-QQ-simplify-6.9.4.jar')
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 }
